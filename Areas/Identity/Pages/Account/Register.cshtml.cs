@@ -52,27 +52,12 @@ namespace CustomIdentity.Areas.Identity.Pages.Account
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
-
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public string ReturnUrl { get; set; }
-
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
-
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public class InputModel
         {
         
-            [Required]
+            [Required(ErrorMessage ="لطفا {0} را وارد نمایید ")]
             [StringLength(50)]
             [Display(Name = "نام کاربری")]
             public string UserName { get; set; }
@@ -87,14 +72,14 @@ namespace CustomIdentity.Areas.Identity.Pages.Account
 
             [Required]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = "رایانامه")]
             public string Email { get; set; }
 
         
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(24, ErrorMessage = " {0} لازم است حداقل {2} و حد اکثر {1} حرف داشته باشد.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "کلمه عبور")]
             public string Password { get; set; }
 
             /// <summary>
@@ -102,9 +87,11 @@ namespace CustomIdentity.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "تکرار کلمه عبور")]
+            [Compare("Password", ErrorMessage = "کلمه عبور و تکرار آن هماهنگ نیستند.")]
             public string ConfirmPassword { get; set; }
+
+            public IFormFile ImageFile { get; set; }
         }
 
 
@@ -120,7 +107,10 @@ namespace CustomIdentity.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                AppUsers user = new AppUsers()
+                string imageName = ""; //save Image and return name
+                int ExpireDate =int.Parse( DateTime.Now.ToString("yyyyMMdd"))+ 10000;
+                
+                                      AppUsers user = new AppUsers()
                 {
                     UserName = Input.UserName,
                     AccessFailedCount = 0,
@@ -129,7 +119,11 @@ namespace CustomIdentity.Areas.Identity.Pages.Account
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
                     UserId = _userManager.Users.Count() + 1,
-                    PhoneNumber = "0912"
+                    PhoneNumber = "",
+                    ImageName = imageName,
+                    LoginSms = false,
+                    IsEnable = true, PostId = 2, ExpireDate = ExpireDate.ToString()
+
                 };
 
                 //   CreateUser();

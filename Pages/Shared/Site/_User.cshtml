@@ -1,0 +1,88 @@
+﻿@inject SignInManager<AppUsers> SignInManager
+@{
+    var UserName = @User.Identity?.Name;
+    var FullName = "";
+
+    if (SignInManager.IsSignedIn(User))
+    {
+        AppUsers user = SignInManager.UserManager.Users.FirstOrDefault(u => u.UserName == UserName);
+        FullName = user.FirstName + ' ' + user.LastName;
+
+    }
+
+}
+
+<nav class="flex-child nav__wrap d-none d-lg-block nav__right"
+     style="max-inline-size: min-content; padding-left: 15px;">
+    <ul class="nav__menu">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <li class="nav__dropdown nav__right-item">
+                <img src="/img/default-avatar.png" style="border-radius:50%;max-width: none;width: 40px;" />
+            </li>
+        }
+
+
+
+        <li class="nav__dropdown nav__right-item">
+
+
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <a style="width: max-content;">@FullName</a>
+            }
+            else
+            {
+                <a style="width: max-content;">کاربری</a>
+            }
+
+            <ul class="nav__dropdown-menu">
+                @if (SignInManager.IsSignedIn(User))
+                {
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">حساب کاربری !</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                            <button type="submit" class="nav-link btn btn-link text-dark">خروج</button>
+                        </form>
+                    </li>
+
+                }
+                else
+                {
+
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">ورود به سامانه</a>
+                    </li>
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">ثبت نام</a>
+                    </li>
+                }
+
+            </ul>
+
+        </li>
+    </ul>
+
+</nav>
+
+
+
+
+<script>
+    function LogOut() {
+        var tkn = $("input[name='__RequestVerificationToken']").val();
+        console.log(tkn);
+        $.ajax({
+            type: "POST",
+            url: "/Account/LogOut/",
+            headers: { "RequestVerificationToken": tkn },
+            success: function(res) {
+                //$.get("Home/Index");
+                window.location.assign("/");
+            }
+        });
+    }
+</script>

@@ -1,18 +1,186 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../fonts/iransans/eot/IRANSansWeb(FaNum)_Bold.eot');
+    src: url('../fonts/iransans/eot/IRANSansWeb(FaNum)_Bold.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('../fonts/iransans/woff2/IRANSansWeb(FaNum)_Bold.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('../fonts/iransans/woff/IRANSansWeb(FaNum)_Bold.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('../fonts/iransans/ttf/IRANSansWeb(FaNum)_Bold.ttf') format('truetype');
+}
+
+
+*{
+    direction:rtl;
+    text-align:initial;
+}
+
+aside,main{float:right}
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-submit:hover {
+    color: darkcyan;
+}
+
+.btn-submit {
+    border: none;
+    background-color: inherit;
+}
+
+.logo
+{
+    display:block!important;
+    margin:auto;
+        text-align:center;
+}
+.btn
+{
+    float:right;
+    margin-right:5px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.center {
+    margin: auto;
+    display: block !Important;
+}
+/* Sticky footer styles
+-------------------------------------------------- */
 html {
   font-size: 14px;
 }
-
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
 }
 
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
 html {
   position: relative;
   min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: 'IRANSans';
+    background-image: url("images/back1.jpg");
+}
+nav{
+ background-image: url("images/back9.jpg");
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    vertical-align: central;
+    text-align: center;
+    background-image: url("images/back4.jpg")
+}
+.modal-header{
+    background-color:cyan;
+    direction:rtl; 
+    border-radius:5px;
+}
+.modal-body {
+    background-image: url("images/back3.jpg");
+     border-radius:0 0 5px 5px; 
+}
+.modal-dialog{
+/* border-radius:10px;
+*/}
+
+.folder-list{
+    background-color :aliceblue ;
+
+}
+.folder-list a{
+    border-bottom:1px gray solid;
+}
+.folder-list a:last-child{
+    border-bottom:none;
+}
+
+.Note-list {
+    background-color: lightcyan;
+}
+.Note-show {
+    background-color: lightyellow;
+   
+    width: 45%;
+    float: right;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-image: url("images/back5.jpg");
+    max-height: 80vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#NoteShow .row>div {
+   /* background-color: white;*/
+    background-image: url("images/back7.jpg");
+}
+#NoteShow * {
+    text-align: justify;
+}
+.folder-list  {
+    background-image:url("images/back2.jpg")
+}
+.Note-list  {
+    background-image:url("images/back3.jpg")
+}
+ 
+.folder-list, .Note-list, .Note-show {
+    border: 1px gray solid;
+    border-radius: 8px;
+    min-height: 78vh;
+    margin-right:5px;
+}
+
+.ref {
+    font-size: x-small;   
+    overflow: auto;
 }

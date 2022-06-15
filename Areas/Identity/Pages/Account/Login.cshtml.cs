@@ -65,7 +65,9 @@ namespace CustomIdentity.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required] 
+            [Required(ErrorMessage = "لطفا {0} را وارد نمایید ")]
+            [StringLength(50)]
+            [Display(Name = "نام کاربری")]
             public string UserName { get; set; }
 
             /// <summary>
@@ -73,14 +75,16 @@ namespace CustomIdentity.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
+            [StringLength(24,  MinimumLength = 6)]
             [DataType(DataType.Password)]
+            [Display(Name = "کلمه عبور")]
             public string Password { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Display(Name = "Remember me?")]
+            [Display(Name = "مرا به خاطر بسپار")]
             public bool RememberMe { get; set; }
         }
 
@@ -114,7 +118,7 @@ namespace CustomIdentity.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    _logger.LogInformation("با موفقیت وارد شدید.");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

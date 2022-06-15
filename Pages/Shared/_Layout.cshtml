@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CustomIdentity.styles.css" asp-append-version="true" />
+    <style>
+      @await RenderSectionAsync("Styles", required: false)
+      main{
+          float:none;
+      }
+    </style>
 </head>
 <body dir=rtl>
     <header>
@@ -32,7 +38,7 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3" >
             @RenderBody()
         </main>
     </div>
@@ -48,5 +54,6 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+  
 </body>
 </html>

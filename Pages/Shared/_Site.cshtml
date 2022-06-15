@@ -1,0 +1,92 @@
+﻿ 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <title>@ViewData["Title"] - سامانه ارتباطات حوزوی </title>
+    <meta charset="utf-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,600,700%7CSource+Sans+Pro:400,600,700' rel='stylesheet'>
+
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/font-icons.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/apple-icon.png">
+    
+    <script src="/js/lazysizes.min.js"></script>
+        <style>
+      @await RenderSectionAsync("Styles", required: false)
+    </style>
+</head>
+
+<body class="bg-light style-default style-rounded">
+   <div class="loading">
+        <img class="logo_img" src="/img/logo_ebadi.jpg" alt="logo" style="height:50%; width:100%">
+    </div>
+
+
+    
+    <div class="content-overlay"></div>
+
+    
+<partial name="Site/_SideNav" />
+
+    <main class="main oh" id="main">
+
+        
+     
+  <partial name="Site/_Header" />
+ <partial name="Site/_TopBar" />
+
+
+
+ 
+<div class="main-container container pt-24" id="main-container">
+
+
+    <div class="row">
+<partial name="Site/_SideBar" />
+        <div class="col-lg-8 blog__content">
+          
+  @RenderBody()
+
+        </div>
+
+
+
+
+    </div>
+
+ 
+</div>
+
+         
+    <partial name="Site/_Footer" />
+        
+
+        <div id="back-to-top">
+            <a href="#top" aria-label="Go to top"><i class="ui-arrow-up"></i></a>
+        </div>
+
+    </main> 
+
+
+    
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/easing.min.js"></script>
+    <script src="/js/owl-carousel.min.js"></script>
+    <script src="/js/flickity.pkgd.min.js"></script>
+    <script src="/js/twitterFetcher_min.js"></script>
+    <script src="/js/jquery.newsTicker.min.js"></script>
+    <script src="/js/modernizr.min.js"></script>
+    <script src="/js/scripts.js"></script>
+      @RenderSection("Scripts", required: false)
+
+</body>
+
+</html>
